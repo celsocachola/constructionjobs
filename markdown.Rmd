@@ -1,0 +1,111 @@
+---
+title: "Construction jobs amount, a statistics review"
+author: "Celso Cachola"
+date: "23/07/2020"
+output: html_document
+---
+
+## Construction jobs
+
+In Brazil, the civil construction is the first sector to be affected by the economic crises. Great part of the professionals of the area comment this. In the Lava Jato operation starts, the same operation that has arrested the Lula president, the civil construction sector has started to enter a large crisis. Many employes has fired, many enterprises lost market value and many works has stayed in half (including the some works for FIFA World Cup 2014 and Rio Olimpic Games 2016).
+But, how statistics can show that?
+In this text, I pretend to show you how numbers can say, although numbers don't say, this 
+Thus, I used civil construction data from the Annual Survey of the Construction Industry - PAIC, elaborate by Brazilian Institute of Geographic and Statistic - IBGE. My objective is compare the GDP numbers with jobs amount from 2007 to 2018 and analyze them.
+I used basically 3 variables: total of employees in Brazil, GDP of civil construction sector and crude GDP of Brazil.
+
+
+### Jobs by Company Group
+
+In the civil construction sector, the jobs in the great companies (with more 30  employees) grown up to 2012, then it's remained stable and as of 2015 the number of jobs falled. In other groups, the amount practically remained constant, with a little grown up. In the next tables we can see the amount of jobs by the enterprises group and in the graph 1 the evoltuion of jobs amount by enterprise type (In yellow, enterprises with 1 to 4 busy people; in orange, enterprises with 5 to 29 busy people; in red, enterprises with 30 or more people busy; in blue, the total of employees).
+
+
+<center> 
+![Table 1 - Employes amount by enterprise group](C:/Users/Celso Cachola/Documents/R/constructionjobs/Rplot.png) 
+
+
+![Graphic 1 - Evolution of employes amount](C:/Users/Celso Cachola/Documents/R/constructionjobs/Rplot01.png)
+
+
+</center>
+### GDP and jobs
+
+The Brazil still faces a low economic growth, having experienced major problems in recent years. The congress approved structural reforms, such as labor reform and later that of the public pension. But consistent economic growth has not yet occurred. With little GDP growth, there is a tendency to reduce jobs in the construction sector. The graph below shows this trend, through the dispersion between the value of the country's gross GDP and the number of jobs in the sector.
+
+<center>
+![Graphic 2 - Employees x GDP ](C:/Users/Celso Cachola/Documents/R/constructionjobs/Rplot02.png)
+
+</center>
+We can also analyze the evolution of Gross GDP and that of the civil construction sector. The graph below shows this comparison. In red the evolution of Brazil's gross GDP and in green the GDP of civil construction. While gross GDP continues to rise, even with difficult economic periods, GDP in the civil construction sector grows to a peak and then remains practically stable.
+
+<center>
+![Graphic 3 - GDP Brazil and GDP civil construction ](C:/Users/Celso Cachola/Documents/R/constructionjobs/Rplot03.png)
+
+</center>
+Although the existence of a causality between the evolution of GDP and the number of jobs in civil construction is almost certain, would there really be a correlation or a causality? How to show this through statistical parameters? We will see that below.
+
+### Show the correlations and causality between GDP and Enployees
+
+When we analyze the correlation between the **jobs** with **GDP of civil construction**, we find:
+```
+0.8410288
+```
+A high number, that demonstrate the high correlation between the variables. However, despite the data shown in Graph 2, the correlation between Brazilian gross GDP and civil construction jobs is **low**, in the amount of:
+```
+0.355101
+```
+It is worth remembering that correlation values indicate correlation forces and do not express causality. Thus, even with a low correlation between the **Brazilian gross GDP** and the **number of jobs in civil construction**, a linear regression study would be necessary to show some causality.
+Thus, we will analyze the linear regression between both variables:
+```
+1.202e-01 (12%)
+```
+Summary of the regression:
+```
+Call:
+lm(formula = ConstructionCivilEmployees ~ BrazilGDP)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-716945 -382971   60700  399289  530425 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 1.790e+06  5.116e+05   3.498  0.00574 **
+Brazil GDP 1.202e-01  1.001e-01   1.201  0.25735   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 475200 on 10 degrees of freedom
+Multiple R-squared:  0.1261,	Adjusted R-squared:  0.03871 
+F-statistic: 1.443 on 1 and 10 DF,  p-value: 0.2573
+```
+In any case, there were **no** robust results.
+But, when analyzing the two variables using the Student's t test, we obtain a low p value. Thus, the probability of obtaining a test value as observed is very unlikely, thus leading to the rejection of a null hypothesis.
+```
+Paired t-test
+
+data:  ConstructionCivilEmployees and BrazilGDP
+t = -6.5802, df = 11, p-value = 3.969e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3392624 -1691909
+sample estimates:
+mean of the differences 
+               -2542266
+```
+The p-values for analyzing the GDP variables of the construction sector and jobs in the sector are even lower:
+```
+p-value = 2.329e-09
+```
+Finally, the p values for the GDP variables of civil construction and gross Brazilian GDP:
+```
+p-value = 1.365e-07
+```
+
+### Conclusion
+
+There is a strong relationship between the growth of gross GDP and the number of people employed in construction. However, the ratio of gross GDP is less than that of correlation between civil construction GDP. This can demonstrate that even with the increase in the value of GDP, it may still take some periods for civil construction to return to employing in the same period from 2012 to 2015. If GDP tend will to grow little, the recovery of the sector, with the creation of new jobs, will still take time. Certainly, civil construction is the most activity that suffers with the crises economics and the one that takes longer to recover.
+
+### References
+
+<https://www.ibge.gov.br/estatisticas/economicas/industria/9018-pesquisa-anual-da-industria-da-construcao.html?=&t=o-que-e>
+<http://www.cbicdados.com.br/menu/pib-e-investimento/pib-brasil-e-construcao-civil>

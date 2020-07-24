@@ -2,10 +2,3 @@
 .Rhistory
 .RData
 .Ruserdata
-touch .gitignore
-
-git add .gitignore
-
-git commit -m "gitignore file"
-
-git push -u origin master
