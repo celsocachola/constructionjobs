@@ -1,11 +1,13 @@
 ---
 title: "Construction jobs amount, a statistics review"
 author: "Celso Cachola"
-date: "23/07/2020"
+date: "26/07/2020"
 output:
   pdf_document: default
   html_document: default
 ---
+
+**This article is a just kidding between data science and civil construction. It's my first job in software R, I hope to improve more in the use of it.**
 
 ## Construction jobs
 
